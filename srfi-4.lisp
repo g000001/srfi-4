@@ -2,10 +2,6 @@
 
 (cl:in-package :srfi-4-internal)
 
-(def-suite srfi-4)
-
-(in-suite srfi-4)
-
 (dolist (s '(s u f))
   (dolist (n '(8 16 32 64))
     (let ((pre (format nil "~A~D" s n)))

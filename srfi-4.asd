@@ -5,7 +5,10 @@
 (defsystem :srfi-4
   :serial t
   :components ((:file "package")
-               (:file "srfi-4")))
+               (:file "srfi-4")
+               (:file "printer")
+               (:file "reader")
+               (:file "test")))
 
 (defmethod perform ((o test-op) (c (eql (find-system :srfi-4))))
   (load-system :srfi-4)
