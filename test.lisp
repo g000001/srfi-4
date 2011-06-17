@@ -5,6 +5,7 @@
 (in-suite srfi-4)
 
 (test printer
+  (enable-homogeneous-numeric-vector)
   (flet ((ws= (string exp) ;write-to-string=
            (string= string (write-to-string exp))))
     ;; signed
@@ -29,11 +30,17 @@
     (is-true (ws= "#F32(0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0)"
                   (make-f32vector 8)))
     (is-true (ws= "#F64(0.0d0 0.0d0 0.0d0 0.0d0 0.0d0 0.0d0 0.0d0 0.0d0)"
-                  (make-f64vector 8)))))
+                  (make-f64vector 8)))
+    (disable-homogeneous-numeric-vector)))
+
 (test reader
-  (is-true (eval
-            (read-from-string
-             "
+  (let ((*readtable* (copy-readtable nil)))
+    (set-dispatch-macro-character #\# #\u #'uvector-reader)
+    (set-dispatch-macro-character #\# #\s #'svector-reader)
+    (set-dispatch-macro-character #\# #\f #'fvector-reader)
+    (is-true (eval
+              (read-from-string
+               "
     (in-package :srfi-4-internal)
     #0=(gensym)
     (defstruct #0# x y z)
@@ -60,4 +67,13 @@
                 (s32vector 0)
                 (s64vector 0)
                 (f32vector 0.0)
-                (f64vector 0.0d0) )))"))))
+                (f64vector 0.0d0) )))")))))
+
+(test side-effects
+  (is-false *original-readtable*)
+  (is-false *restore-homogeneous-numeric-vector*)
+  ;;
+  (enable-homogeneous-numeric-vector)
+  (disable-homogeneous-numeric-vector)
+  (is-false *original-readtable*)
+  (is-false *restore-homogeneous-numeric-vector*))

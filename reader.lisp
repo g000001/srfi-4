@@ -1,6 +1,4 @@
-'(set-dispatch-macro-character #\# #\u #'uvector-reader)
-'(set-dispatch-macro-character #\# #\s #'svector-reader)
-'(set-dispatch-macro-character #\# #\f #'fvector-reader)
+(in-package :srfi-4-internal)
 
 (defun uvector-reader (stream char arg)
   (declare (ignore char arg))

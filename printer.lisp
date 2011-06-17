@@ -2,7 +2,7 @@
 (in-package :sb-pretty)
 
 #+sbcl
-(defun pprint-vector (stream vector)
+(defun pprint-homogeneous-numeric-vector (stream vector)
   (let ((prefix (typecase vector
                   ((vector (signed-byte 8)) "#S8(")
                   ((vector (unsigned-byte 8)) "#U8(")

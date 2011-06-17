@@ -8,6 +8,7 @@
                (:file "srfi-4")
                (:file "printer")
                (:file "reader")
+               (:file "util")
                (:file "test")))
 
 (defmethod perform ((o test-op) (c (eql (find-system :srfi-4))))

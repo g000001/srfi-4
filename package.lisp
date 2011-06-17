@@ -3,6 +3,8 @@
 (cl:in-package :cl-user)
 
 (defpackage :srfi-4
+    (:export :enable-homogeneous-numeric-vector
+             :disable-homogeneous-numeric-vector)
     (:export . #.(let (ans)
                    (dolist (s '("s" "u" "f"))
                      (dolist (n '(8 16 32 64))
