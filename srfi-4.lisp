@@ -22,9 +22,9 @@
                      (typep ,type '(vector ,type-spec)))))
           ;; make-TAGvector
           (let ((name (intern (format nil "MAKE-~AVECTOR" pre))))
-            (eval `(defun ,name (size)
+            (eval `(defun ,name (size &optional (fill 0))
                      (make-array size
-                                 :initial-element (coerce 0 ',type-spec)
+                                 :initial-element (coerce fill ',type-spec)
                                  :element-type ',type-spec
                                  :adjustable nil))))
           ;; TAGvector
