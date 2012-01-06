@@ -66,6 +66,4 @@
           (let ((name (intern (format nil "LIST->~AVECTOR" pre))))
             (eval `(defun ,name (list)
                      (declare (list list))
-                     (coerce list '(simple-vector ,type-spec))))))))))
-
-
+                     (coerce list '(vector ,type-spec))))))))))
