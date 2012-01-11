@@ -14,7 +14,9 @@
       (set-dispatch-macro-character #\# #\s #'svector-reader)
       (set-dispatch-macro-character #\# #\f #'fvector-reader))
     (unless *original-pprint-vector*
-      (setf *original-pprint-vector* #+sbcl #'sb-pretty::pprint-vector)
+      (setf *original-pprint-vector*
+            #+sbcl #'sb-pretty::pprint-vector
+            #+lispworks #'system::sharp-left-paren)
       #+sbcl
       (sb-ext:without-package-locks
         (setf (symbol-function 'sb-pretty::pprint-vector)
