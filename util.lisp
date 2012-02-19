@@ -17,7 +17,8 @@
       (setf *original-pprint-vector*
             #+sbcl #'sb-pretty::pprint-vector
             #+lispworks #'system::sharp-left-paren
-            #+ecl #'si::pprint-vector)
+            #+ecl #'si::pprint-vector
+            #+ccl #'ccl::pprint)
       #+sbcl
       (sb-ext:without-package-locks
         (setf (symbol-function 'sb-pretty::pprint-vector)
