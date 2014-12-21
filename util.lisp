@@ -18,7 +18,8 @@
             #+sbcl #'sb-pretty::pprint-vector
             #+lispworks #'system::sharp-left-paren
             #+ecl #'si::pprint-vector
-            #+ccl #'ccl::pprint)
+            #+ccl #'ccl::pprint
+            #+abcl #'cl:pprint)
       #+sbcl
       (sb-ext:without-package-locks
         (setf (symbol-function 'sb-pretty::pprint-vector)
