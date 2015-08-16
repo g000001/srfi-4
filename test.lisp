@@ -7,7 +7,7 @@
 (test printer
   (enable-homogeneous-numeric-vector)
   (flet ((ws= (string exp) ;write-to-string=
-           (string= string (write-to-string exp))))
+           (string-equal string (write-to-string exp))))
     ;; signed
     (is-true (ws= "#S8(0 0 0 0 0 0 0 0)"
                   (make-s8vector 8)))

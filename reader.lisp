@@ -13,8 +13,9 @@
   (let ((c (peek-char t stream nil t)))
     (etypecase c
       ((eql #\( )
-         (#+sbcl sb-impl::sharp-s
-                 stream char arg))
+       (#+sbcl sb-impl::sharp-s
+        #+lispworks system::sharp-s
+        stream char arg))
       ((satisfies digit-char-p)
          (apply (ecase (read stream t nil t)
                   (8 #'srfi-4:s8vector)
@@ -22,6 +23,7 @@
                   (32 #'srfi-4:s32vector)
                   (64 #'srfi-4:s64vector))
                 (read stream t nil t))))))
+
 
 (defun fvector-reader (stream char arg)
   (declare (ignore char arg))

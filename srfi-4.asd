@@ -10,7 +10,7 @@
                (:file "printer")
                (:file "reader")
                (:file "util")
-               (:file "test")))
+               #-ecl (:file "test")))
 
 (defmethod perform ((o test-op) (c (eql (find-system :srfi-4))))
   (load-system :srfi-4)
