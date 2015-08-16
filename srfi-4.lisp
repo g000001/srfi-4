@@ -17,7 +17,7 @@
      (declaim (inline ,name))
      (defun ,name (,@args) ,@body) ))
 
-(defmacro defsrfi-4 ()
+(defmacro defsrfi-4 (&aux (*print-case* :upcase))
   `(progn
      ,@(coll
          (dolist (s '(s u f))
