@@ -1,6 +1,6 @@
 ;;;; srfi-4.lisp
 
-(cl:in-package :srfi-4-internal)
+(cl:in-package "https://github.com/g000001/srfi-4#internals")
 
 (defmacro coll (&body body)
   (let ((tem (gensym "TEM-"))
