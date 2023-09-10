@@ -21,14 +21,14 @@
     (unless *original-pprint-vector*
       (setf *original-pprint-vector*
             (load-time-value
-             #+sbcl #'sb-pretty::pprint-vector
+             #+sbcl #'sb-pretty::pprint-array
              #+lispworks #'lw-xp::pretty-vector
              #+ecl #'si::pprint-vector
              #+ccl #'ccl::pprint
              #+abcl #'cl:pprint))
       #+sbcl
       (sb-ext:without-package-locks
-        (setf (fdefinition 'sb-pretty::pprint-vector)
+        (setf (fdefinition 'sb-pretty::pprint-array)
               #'pprint-homogeneous-numeric-vector))
       #+lispworks
       (let ((hcl:*packages-for-warn-on-redefinition* '()))
@@ -41,7 +41,7 @@
     (when *original-pprint-vector*
       #+sbcl
       (sb-ext:without-package-locks
-        (setf (fdefinition 'sb-pretty::pprint-vector)
+        (setf (fdefinition 'sb-pretty::pprint-array)
               *original-pprint-vector*
 
               *original-pprint-vector*
