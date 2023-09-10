@@ -35,19 +35,18 @@
                       (make-f64vector 8))))
   (disable-homogeneous-numeric-vector))
 
+(defstruct srfi-4-test-structure x y z)
+
 (5am:test reader
   (5am:is-true (eval
-                (read-from-string
-                 "
-    (in-package |https://github.com/g000001/srfi-4#internals|)
-    #0=(gensym)
-    (defstruct #0# x y z)
-
-    (let ((x '(#u8(0)
+                (let ((*package* (find-package '|https://github.com/g000001/srfi-4#internals|)))
+                  (read-from-string
+                   (format nil
+                           "(let ((x '(#u8(0)
            #u16(0)
            #u32(0)
            #u64(0)
-           #S(#0# :X 1 :Y 2 :Z 3)
+           #S(srfi-4-test-structure :X 1 :Y 2 :Z 3)
            #s8(0)
            #s16(0)
            #s32(0)
@@ -59,13 +58,13 @@
                 (u16vector 0)
                 (u32vector 0)
                 (u64vector 0)
-                (make-foo :x 1 :y 2 :z 3)
+                (make-srfi-4-test-structure :x 1 :y 2 :z 3)
                 (s8vector 0)
                 (s16vector 0)
                 (s32vector 0)
                 (s64vector 0)
                 (f32vector 0.0)
-                (f64vector 0.0d0) )))"))))
+                (f64vector 0.0d0) )))"))))))
 
 (5am:test side-effects
   (disable-homogeneous-numeric-vector)
